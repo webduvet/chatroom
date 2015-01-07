@@ -43,11 +43,13 @@ $(document).ready(function(){
 	socket.on('joinResult', function(result){
 		$('#room').text(result.room);
 		$('#messages').append(divSystemContentElement('Room Changed'));
+		$('#messages').scrollTop($('#messages').prop('scrollHeight'));
 	});
 
 	socket.on('message', function(message){
 		var newElement = $('<div></div>').text(message.text);
 		$('#messages').append(newElement);
+		$('#messages').scrollTop($('#messages').prop('scrollHeight'));
 	});
 
 	socket.on('rooms', function(rooms){
