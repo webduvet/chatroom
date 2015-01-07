@@ -47,14 +47,14 @@ $(document).ready(function(){
 
 	socket.on('message', function(message){
 		var newElement = $('<div></div>').text(message.text);
-		$('´messages').append(newElement);
+		$('#messages').append(newElement);
 	});
 
 	socket.on('rooms', function(rooms){
 		$('#room-list').empty();
 
 		for(var room in rooms) {
-			room = room.substring(1, room.length);
+			room = room.substring(0, room.length);
 			if (room != '') {
 				$('#room-list').append(divEscapeContentElement(room));
 			}
@@ -73,7 +73,7 @@ $(document).ready(function(){
 	$('#send-message').focus();
 
 	$('#send-form').submit(function(){
-	processUserInput(chatApp, socket);
-	return false;
+		processUserInput(chatApp, socket);
+		return false;
 	});
 });
